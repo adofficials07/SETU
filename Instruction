@@ -1,0 +1,49 @@
+
+## 🔧 Instructions to Run
+
+1. Clone the Repository
+
+   ```bash
+   git clone https://github.com/your-username/lora-voice-tracker.git
+   cd lora-voice-tracker
+   ```
+
+2. Open in Arduino IDE
+
+   * Open `src/main.ino` in Arduino IDE.
+   * Install ESP32 board support (via Preferences → Additional Board URLs):
+
+     ```
+     https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+     ```
+
+3. Install Required Libraries
+
+   * From Arduino Library Manager:
+
+     * `Adafruit SSD1306`
+     * `Adafruit GFX`
+     * `TinyGPS++`
+
+4. Hardware Wiring
+
+   * ESP32 TX (GPIO17) → LoRa RXD
+   * ESP32 RX (GPIO18) ← LoRa TXD
+   * OLED (SSD1306) → SDA, SCL (default I²C)
+   * GPS → second UART (pins configurable in code)
+   * I2S Mic & MAX98357A → ESP32 I2S pins
+   * Push Buttons (Voice, GPS, SOS) → GPIOs
+   * RGB LEDs + Siren → GPIOs
+
+5. Upload Code
+
+   * Connect ESP32-S3 via USB-C.
+   * Select board: ESP32S3 Dev Module.
+   * Upload to both devices with different addresses set in code (`MY_ADDR`, `PEER_ADDR`).
+
+6. Test Prototype
+
+   * Press **Button 1 → Send voice/text to peer.
+   * Press **Button 2 → Request peer GPS until pressed again.
+   * Press **Button 3 → Trigger SOS (red LED + siren).
+   * Messages and status show on OLED.
